@@ -1,0 +1,95 @@
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-5) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 1;
+}
+
+/* Same hero treatment as the sun page — the two pages read as one app. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--hero-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radii-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.heroCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  /* Cap the column so the search field does not stretch the whole panel. */
+  .heroCol {
+    flex: 1 1 auto;
+  }
+}
+
+.heroTitle {
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 1.1;
+  color: var(--text);
+  text-wrap: balance;
+  max-width: 16ch;
+  margin: 0;
+}
+
+.heroText {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 52ch;
+  font-size: 0.95rem;
+}
+
+.noLocation {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--space-5) var(--space-6);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .main {
+    padding: var(--space-5) var(--space-4) var(--space-6);
+    gap: var(--space-5);
+  }
+  .hero {
+    padding: var(--space-5);
+  }
+}

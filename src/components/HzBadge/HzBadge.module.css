@@ -1,0 +1,54 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.sm {
+  padding: 3px var(--space-2);
+  font-size: 0.82rem;
+}
+
+.muted {
+  color: var(--text-muted);
+  background: transparent;
+  border-style: dashed;
+}
+
+/* Shared hazard tokens (light + dark variants live in tokens.css). */
+.badge[data-hz='1'] {
+  color: var(--hz-1-fg);
+  background: var(--hz-1-bg);
+  border-color: var(--hz-1-border);
+}
+.badge[data-hz='2'] {
+  color: var(--hz-2-fg);
+  background: var(--hz-2-bg);
+  border-color: var(--hz-2-border);
+}
+.badge[data-hz='3'] {
+  color: var(--hz-3-fg);
+  background: var(--hz-3-bg);
+  border-color: var(--hz-3-border);
+}
+.badge[data-hz='4'] {
+  color: var(--hz-4-fg);
+  background: var(--hz-4-bg);
+  border-color: var(--hz-4-border);
+}
+.badge[data-hz='5'] {
+  color: var(--hz-5-fg);
+  background: var(--hz-5-bg);
+  border-color: var(--hz-5-border);
+}
+.badge[data-hz='6'] {
+  color: var(--hz-6-fg);
+  background: var(--hz-6-bg);
+  border-color: var(--hz-6-border);
+}

@@ -1,0 +1,21 @@
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--cat-great-border);
+  border-left: 4px solid var(--cat-great-border);
+  border-radius: var(--radii);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow);
+}
+.msg { margin: 0; color: var(--text); }
+.retry {
+  border: 1px solid var(--border-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+}
+.retry:hover { border-color: var(--accent); background: var(--surface-hover); }

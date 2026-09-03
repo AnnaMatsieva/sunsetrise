@@ -1,0 +1,80 @@
+.map {
+  margin: 0 auto;
+  max-width: 15rem;
+  text-align: center;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.rim {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.5;
+  opacity: 0.7;
+}
+
+.grid {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 4;
+  opacity: 0.35;
+}
+
+.cardinal {
+  fill: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.point .dot {
+  fill: var(--accent, #d9822b);
+}
+
+.point[data-kind='moon'] .dot {
+  fill: var(--text-muted);
+}
+
+/* Below the horizon now: a hollow, quiet marker at the rise azimuth. */
+.point[data-state='later'] .dot {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+}
+
+/* Meteor-shower radiant: a dashed hollow dot — a direction, not an object. */
+.point[data-kind='shower'] .dot {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+
+/* Reference stars: small quiet dots — landmarks, not targets. */
+.point[data-kind='star'] .dot {
+  fill: var(--text-muted);
+}
+
+.point[data-kind='star'] .label {
+  fill: var(--text-muted);
+  font-size: 8px;
+}
+
+.point[data-state='later'] .label {
+  opacity: 0.7;
+}
+
+.label {
+  fill: var(--text);
+  font-size: 9px;
+}
+
+.caption {
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}

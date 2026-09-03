@@ -1,0 +1,62 @@
+.detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radii);
+  color: var(--text-muted);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.tab:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.tabActive {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.tabLabel {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.tabTime {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.health {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radii);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}

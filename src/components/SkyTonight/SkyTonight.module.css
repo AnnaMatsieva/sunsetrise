@@ -1,0 +1,58 @@
+/* "Tonight's sky" — the same quiet full-width card language as the rest,
+   rows of one-line facts. Color only through the badges' tokens (none here —
+   the emoji icons carry the visual rhythm). */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radii-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  min-width: 0;
+}
+
+.icon {
+  flex: none;
+  font-size: 0.95rem;
+}
+
+.text {
+  color: var(--text);
+  min-width: 0;
+}
+
+.text strong {
+  font-weight: 600;
+}
+
+.dim {
+  color: var(--text-muted);
+}

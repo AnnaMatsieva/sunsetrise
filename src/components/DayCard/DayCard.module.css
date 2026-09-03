@@ -1,0 +1,147 @@
+/* Day card — a quiet tile. Color = meaning (the badge inside), not decoration.
+   The top strip is neutral; the best day gets the accent gradient (the second
+   "sky moment") + glow. The selected day gets an accent ring. */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radii);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease,
+    background 0.18s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--border-strong);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+.card:focus-visible {
+  outline: none;
+  box-shadow: var(--ring), var(--shadow);
+}
+/* Higher specificity than .card:hover, so the selection ring shows
+   immediately on click — not only after the cursor leaves. */
+.card.selected {
+  border-color: var(--accent);
+  box-shadow: var(--ring), var(--shadow-sm);
+}
+.card.selected:hover {
+  border-color: var(--accent);
+  box-shadow: var(--ring), var(--shadow);
+}
+.best {
+  border-color: var(--cat-great-border);
+  box-shadow: var(--cat-great-glow), var(--shadow);
+  background: var(--surface);
+}
+.best::before {
+  background: var(--accent-grad);
+  height: 3px;
+}
+
+/* Today — an accent outline (outside the border, so it composes with the
+   best-day gradient) + a small "Today" pill in the head. */
+.today {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.todayTag {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent-grad);
+  border-radius: 999px;
+  padding: 2px var(--space-2);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.date {
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+}
+.bestTag {
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--cat-great-fg);
+  background: var(--cat-great-bg);
+  border: 1px solid var(--cat-great-border);
+  border-radius: 999px;
+  padding: 2px var(--space-2);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.kindLabel {
+  width: 4.4em;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+.time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  min-width: 2.9em;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.polar {
+  color: var(--text-muted);
+  font-style: italic;
+  font-size: 0.82rem;
+}
+
+/* Quiet weather line for forecast days — quieter than the events, no border
+   (the Today card keeps its own full-width weather line above the list). */
+.weatherRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+.chip {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Best-event-of-the-day marker — not needed in the new design (strip+glow above). */
+.bestGlowMarker {
+  display: none;
+}
+
+/* Far-horizon date — an honest dim low-confidence label. */
+.lowConfidence {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.8;
+}

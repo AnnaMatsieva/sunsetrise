@@ -1,0 +1,209 @@
+/* Design tokens. Principle (2026): "quiet chrome" — neutral surfaces,
+   hierarchy through font weight and spacing, color only for meaning (quality
+   categories) + a sunset accent gradient in two "sky moments": the hero and
+   the best day. Light theme (sunrise) is the default; dark (dusk) comes via
+   prefers-color-scheme or [data-theme="dark"].
+
+   Category colors are duplicated in constants/colors.ts (for the JS chart) —
+   keep them in sync. */
+
+:root {
+  /* Surfaces and text — light (sunrise) */
+  --bg: #f6f4f1;
+  --bg-grad: radial-gradient(120% 60% at 50% -10%, rgba(214, 88, 122, 0.05), transparent 60%);
+  --surface: #ffffff;
+  --surface-2: #faf8f6;
+  --surface-hover: #faf8f6;
+  --text: #2a2230;
+  --text-muted: #7a7280;
+  --border: rgba(42, 34, 48, 0.10);
+  --border-strong: rgba(42, 34, 48, 0.16);
+  --accent: #d6587a;
+  --accent-2: #e08234;
+  --accent-grad: linear-gradient(120deg, #d6587a 0%, #e08234 100%);
+  --shadow-sm: 0 1px 2px rgba(60, 40, 50, 0.06);
+  --shadow: 0 1px 2px rgba(60, 40, 50, 0.05), 0 10px 26px rgba(70, 45, 55, 0.08);
+  --shadow-lg: 0 2px 6px rgba(60, 40, 50, 0.08), 0 22px 50px rgba(70, 45, 55, 0.14);
+  --ring: 0 0 0 3px rgba(214, 88, 122, 0.22);
+
+  /* "Sky" moment — the hero panel (sunrise: peach→rose) */
+  --hero-bg:
+    radial-gradient(80% 130% at 82% 12%, rgba(255, 170, 120, 0.55), transparent 60%),
+    linear-gradient(120deg, #f3d9c8 0%, #f0c8c2 52%, #e9bcc8 100%);
+
+  /* Categories — light. Color = quality meaning. */
+  --cat-poor-fg: #5c6a7d;
+  --cat-poor-bg: rgba(120, 135, 160, 0.13);
+  --cat-poor-border: rgba(120, 135, 160, 0.26);
+  --cat-poor-bar: #73809a;
+  --cat-fair-fg: #8c6a26;
+  --cat-fair-bg: rgba(210, 165, 80, 0.16);
+  --cat-fair-border: rgba(199, 150, 60, 0.34);
+  --cat-fair-bar: #c19040;
+  --cat-good-fg: #923914;
+  --cat-good-bg: rgba(224, 130, 52, 0.16);
+  --cat-good-border: rgba(214, 110, 40, 0.36);
+  --cat-good-bar: #dc6b2e;
+  --cat-great-fg: #b03a5e;
+  --cat-great-bg: rgba(214, 88, 122, 0.14);
+  --cat-great-border: rgba(214, 88, 122, 0.38);
+  --cat-great-bar: #d6587a;
+  --cat-great-glow: 0 0 0 1px rgba(214, 88, 122, 0.35), 0 0 20px 3px rgba(214, 88, 122, 0.22);
+
+  /* Hazard scale 1..6 (health blocks: air quality, UV). Shared across themes:
+     hz3..hz5 alias the proven category values, hz1/hz2/hz6 are their own hues. */
+  --hz-1-fg: #2f6b45;
+  --hz-1-bg: rgba(64, 138, 96, 0.14);
+  --hz-1-border: rgba(64, 138, 96, 0.34);
+  --hz-2-fg: #5f6b1f;
+  --hz-2-bg: rgba(150, 165, 55, 0.15);
+  --hz-2-border: rgba(150, 165, 55, 0.34);
+  --hz-3-fg: var(--cat-fair-fg);
+  --hz-3-bg: var(--cat-fair-bg);
+  --hz-3-border: var(--cat-fair-border);
+  --hz-4-fg: var(--cat-good-fg);
+  --hz-4-bg: var(--cat-good-bg);
+  --hz-4-border: var(--cat-good-border);
+  --hz-5-fg: var(--cat-great-fg);
+  --hz-5-bg: var(--cat-great-bg);
+  --hz-5-border: var(--cat-great-border);
+  --hz-6-fg: #7c1f2e;
+  --hz-6-bg: rgba(140, 30, 45, 0.18);
+  --hz-6-border: rgba(140, 30, 45, 0.42);
+
+  --radii-sm: 8px;
+  --radii: 12px;
+  --radii-lg: 18px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 28px;
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --maxw: 1020px;
+}
+
+/* Dark theme (dusk): system preference (unless an explicit light is set) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0e0c13;
+    --bg-grad: radial-gradient(120% 60% at 50% -10%, rgba(240, 106, 140, 0.06), transparent 60%);
+    --surface: #17141d;
+    --surface-2: #1d1925;
+    --surface-hover: #1d1925;
+    --text: #f2eef4;
+    --text-muted: #948ea0;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.13);
+    --accent: #f06a8c;
+    --accent-2: #f0a35a;
+    --accent-grad: linear-gradient(120deg, #f06a8c 0%, #f0a35a 100%);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.40), 0 12px 30px rgba(0, 0, 0, 0.42);
+    --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.45), 0 26px 60px rgba(0, 0, 0, 0.55);
+    --ring: 0 0 0 3px rgba(240, 106, 140, 0.30);
+
+    --hero-bg:
+      radial-gradient(80% 130% at 82% 10%, rgba(240, 130, 90, 0.30), transparent 58%),
+      linear-gradient(120deg, #241a36 0%, #3a2348 52%, #4e2746 100%);
+
+    --cat-poor-fg: #9aa6b8;
+    --cat-poor-bg: rgba(120, 135, 160, 0.15);
+    --cat-poor-border: rgba(120, 135, 160, 0.30);
+    --cat-poor-bar: #7e8ca3;
+    --cat-fair-fg: #d9b06a;
+    --cat-fair-bg: rgba(210, 165, 80, 0.14);
+    --cat-fair-border: rgba(210, 165, 80, 0.34);
+    --cat-fair-bar: #c79a4e;
+    --cat-good-fg: #f0a35a;
+    --cat-good-bg: rgba(224, 130, 52, 0.16);
+    --cat-good-border: rgba(224, 130, 52, 0.38);
+    --cat-good-bar: #e0682a;
+    --cat-great-fg: #f47fa0;
+    --cat-great-bg: rgba(214, 88, 122, 0.16);
+    --cat-great-border: rgba(240, 106, 140, 0.42);
+    --cat-great-bar: #f06a8c;
+    --cat-great-glow: 0 0 0 1px rgba(240, 106, 140, 0.42), 0 0 22px 3px rgba(240, 106, 140, 0.30);
+
+    --hz-1-fg: #7fd6a4;
+    --hz-1-bg: rgba(90, 190, 135, 0.18);
+    --hz-1-border: rgba(90, 190, 135, 0.36);
+    --hz-2-fg: #c2cf6a;
+    --hz-2-bg: rgba(170, 185, 80, 0.18);
+    --hz-2-border: rgba(170, 185, 80, 0.36);
+    --hz-3-fg: var(--cat-fair-fg);
+    --hz-3-bg: var(--cat-fair-bg);
+    --hz-3-border: var(--cat-fair-border);
+    --hz-4-fg: var(--cat-good-fg);
+    --hz-4-bg: var(--cat-good-bg);
+    --hz-4-border: var(--cat-good-border);
+    --hz-5-fg: var(--cat-great-fg);
+    --hz-5-bg: var(--cat-great-bg);
+    --hz-5-border: var(--cat-great-border);
+    --hz-6-fg: #f08a95;
+    --hz-6-bg: rgba(200, 50, 70, 0.22);
+    --hz-6-border: rgba(220, 70, 90, 0.45);
+  }
+}
+
+/* Dark theme: explicit choice */
+:root[data-theme='dark'] {
+  --bg: #0e0c13;
+  --bg-grad: radial-gradient(120% 60% at 50% -10%, rgba(240, 106, 140, 0.06), transparent 60%);
+  --surface: #17141d;
+  --surface-2: #1d1925;
+  --surface-hover: #1d1925;
+  --text: #f2eef4;
+  --text-muted: #948ea0;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.13);
+  --accent: #f06a8c;
+  --accent-2: #f0a35a;
+  --accent-grad: linear-gradient(120deg, #f06a8c 0%, #f0a35a 100%);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.40), 0 12px 30px rgba(0, 0, 0, 0.42);
+  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.45), 0 26px 60px rgba(0, 0, 0, 0.55);
+  --ring: 0 0 0 3px rgba(240, 106, 140, 0.30);
+
+  --hero-bg:
+    radial-gradient(80% 130% at 82% 10%, rgba(240, 130, 90, 0.30), transparent 58%),
+    linear-gradient(120deg, #241a36 0%, #3a2348 52%, #4e2746 100%);
+
+  --cat-poor-fg: #9aa6b8;
+  --cat-poor-bg: rgba(120, 135, 160, 0.15);
+  --cat-poor-border: rgba(120, 135, 160, 0.30);
+  --cat-poor-bar: #7e8ca3;
+  --cat-fair-fg: #d9b06a;
+  --cat-fair-bg: rgba(210, 165, 80, 0.14);
+  --cat-fair-border: rgba(210, 165, 80, 0.34);
+  --cat-fair-bar: #c79a4e;
+  --cat-good-fg: #f0a35a;
+  --cat-good-bg: rgba(224, 130, 52, 0.16);
+  --cat-good-border: rgba(224, 130, 52, 0.38);
+  --cat-good-bar: #e0682a;
+  --cat-great-fg: #f47fa0;
+  --cat-great-bg: rgba(214, 88, 122, 0.16);
+  --cat-great-border: rgba(240, 106, 140, 0.42);
+  --cat-great-bar: #f06a8c;
+  --cat-great-glow: 0 0 0 1px rgba(240, 106, 140, 0.42), 0 0 22px 3px rgba(240, 106, 140, 0.30);
+
+  --hz-1-fg: #7fd6a4;
+  --hz-1-bg: rgba(90, 190, 135, 0.18);
+  --hz-1-border: rgba(90, 190, 135, 0.36);
+  --hz-2-fg: #c2cf6a;
+  --hz-2-bg: rgba(170, 185, 80, 0.18);
+  --hz-2-border: rgba(170, 185, 80, 0.36);
+  --hz-3-fg: var(--cat-fair-fg);
+  --hz-3-bg: var(--cat-fair-bg);
+  --hz-3-border: var(--cat-fair-border);
+  --hz-4-fg: var(--cat-good-fg);
+  --hz-4-bg: var(--cat-good-bg);
+  --hz-4-border: var(--cat-good-border);
+  --hz-5-fg: var(--cat-great-fg);
+  --hz-5-bg: var(--cat-great-bg);
+  --hz-5-border: var(--cat-great-border);
+  --hz-6-fg: #f08a95;
+  --hz-6-bg: rgba(200, 50, 70, 0.22);
+  --hz-6-border: rgba(220, 70, 90, 0.45);
+}

@@ -1,0 +1,134 @@
+.wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radii-lg);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.monthNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.monthLabel {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.monthNav button {
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text);
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  font-size: 1.1rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.monthNav button:hover {
+  border-color: var(--accent);
+  background: var(--surface-2);
+}
+
+.timesLocal {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-x: auto;
+}
+
+.weekHeader,
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(72px, 1fr));
+  gap: 4px;
+}
+
+.weekHeader span {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-bottom: var(--space-1);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  padding: var(--space-2) var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radii-sm);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.outside {
+  opacity: 0.35;
+}
+
+.icon {
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.dayNum {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.illum {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.rs {
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Full/new moon day — the accent ring. */
+.highlight {
+  border-color: var(--cat-great-border);
+  box-shadow: var(--cat-great-glow);
+  background: var(--cat-great-bg);
+}
+
+/* Today — an accent outline outside the border, so it composes with the
+   full/new-moon glow instead of fighting it. */
+.today {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+@media (max-width: 600px) {
+  .weekHeader,
+  .week {
+    grid-template-columns: repeat(7, minmax(58px, 1fr));
+  }
+}

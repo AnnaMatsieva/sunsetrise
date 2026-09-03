@@ -1,0 +1,88 @@
+/* "Today" card on the moon page — full-width, above the calendar. Same quiet
+   surface; the moon itself (the emoji icon on the accent-tinted disc) is the
+   color moment, a full/new-moon day gets the great-category ring. */
+
+.card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radii-lg);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 1.7rem;
+  line-height: 1;
+  background: var(--hero-bg);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--accent-grad);
+  border-radius: 999px;
+  padding: 3px var(--space-3);
+  white-space: nowrap;
+}
+
+.phase {
+  font-weight: 600;
+  font-size: 1.02rem;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.illum {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rs {
+  display: flex;
+  gap: var(--space-4);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Full/new-moon (or supermoon) day — the same great accent as the calendar. */
+.event {
+  margin-left: auto;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cat-great-fg);
+  background: var(--cat-great-bg);
+  border: 1px solid var(--cat-great-border);
+  border-radius: 999px;
+  padding: 3px var(--space-3);
+  white-space: nowrap;
+}

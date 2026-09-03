@@ -1,0 +1,208 @@
+/* Hourly quality chart for an event. Bars H-3..H+3, height = score,
+   color = category (passed via --bar from colors.ts). Dynamic
+   values (bar height/color/tooltip position) go through CSS variables —
+   the visual rules stay here. */
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.empty {
+  padding: var(--space-4) var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* Chart area: axes on the left, bar columns on the right. */
+.figure {
+  display: grid;
+  grid-template-columns: 2ch 1fr;
+  gap: var(--space-2);
+}
+
+.yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  padding: 0 2px 0 0;
+}
+
+.plot {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-2);
+  height: 160px;
+  padding: 2px 0; /* 2px surface ring at top/bottom */
+  border-bottom: 1px solid var(--border);
+}
+
+/* Reference lines at 25/50/75 — muted, a hint at the category boundaries. */
+.gridline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  cursor: default;
+}
+
+/* The event column (offset 0) — a light highlight. */
+.eventCol::before {
+  content: '';
+  position: absolute;
+  inset: -2px -1px -1px -1px;
+  background: var(--accent);
+  opacity: 0.08;
+  border-radius: var(--radii-sm);
+  pointer-events: none;
+}
+
+.bar {
+  width: 100%;
+  /* height = score*100% via --h */
+  height: calc(var(--h, 0) * 1%);
+  min-height: 2px;
+  background: var(--bar, var(--border));
+  border-radius: 4px 4px 0 0; /* 4px on the data end, anchored to the baseline */
+  display: flex;
+  justify-content: center;
+  overflow: visible;
+  transition: height 0.18s ease, opacity 0.18s ease;
+}
+
+.noData {
+  height: 6px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--border) 0,
+    var(--border) 2px,
+    transparent 2px,
+    transparent 5px
+  );
+  border-radius: 4px 4px 0 0;
+  opacity: 0.6;
+}
+
+.barLabel {
+  position: relative;
+  top: -1.3em; /* sits just above the bar top */
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/* X axis — hours (aligned with the chart columns). */
+.axis {
+  display: grid;
+  grid-template-columns: 2ch repeat(7, 1fr);
+  gap: var(--space-2);
+  margin-top: 2px;
+}
+
+.tick {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.eventTick {
+  position: relative;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.eventIcon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* Tooltip on hover/focus. */
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: calc((var(--i, 0) + 0.5) * 100% / 7);
+  transform: translateX(-50%);
+  margin-bottom: 6px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radii-sm);
+  box-shadow: var(--shadow);
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: var(--text);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ttRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.ttDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--bar, var(--border));
+  flex: none;
+}
+
+.ttMuted {
+  color: var(--text-muted);
+}
+
+.focused {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px 4px 0 0;
+}
+
+@media (max-width: 480px) {
+  .plot {
+    height: 130px;
+  }
+  .barLabel {
+    font-size: 0.62rem;
+  }
+}

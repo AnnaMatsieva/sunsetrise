@@ -1,0 +1,29 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 2px var(--space-2);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.accent {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.great {
+  color: var(--cat-great-fg);
+  background: var(--cat-great-bg);
+  border: 1px solid var(--cat-great-border);
+}
+
+.neutral {
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
